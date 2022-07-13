@@ -9,10 +9,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Dialog",
+      title: "Bottom Sheet",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Dialog"),
+          title: Text("Bottom Sheet"),
         ),
         body: Center(
           child: Column(
@@ -20,62 +20,41 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
-                child: const Text("Show Dialog"),
+                child: const Text("Bottom Sheet"),
                 onPressed: () {
-                  //Get a default Dialog Box
-                  // Get.defaultDialog();
-
-                  Get.defaultDialog(
-                    title: "Dialog Title",
-                    titleStyle: const TextStyle(fontSize: 20),
-                    middleText: "This is Middle Text",
-                    middleTextStyle: const TextStyle(fontSize: 20),
-                    backgroundColor: Colors.amber,
-                    radius: 20,
-
-                    //To customize the middle Text
-                    content: Row(
-                      children: const [
-                        CircularProgressIndicator(),
-                        SizedBox(),
-                        Padding(
-                          padding: EdgeInsets.only(left: 20.0),
-                          child: Expanded(
-                            child: Text("Data Loading"),
+                  Get.bottomSheet(
+                    Container(
+                      child: Wrap(
+                        children: [
+                          ListTile(
+                            title: Text("Light Theme"),
+                            leading: Icon(Icons.wb_sunny_outlined),
+                            onTap: () {
+                              Get.changeTheme(ThemeData.light());
+                            },
                           ),
-                        ),
-                      ],
+                          ListTile(
+                            title: Text("Dark Theme"),
+                            leading: Icon(Icons.wb_sunny),
+                            onTap: () {
+                              Get.changeTheme(ThemeData.dark());
+                            },
+                          ),
+                        ],
+                      ),
                     ),
-                    textCancel: "Cancel",
-                    cancelTextColor: Colors.green,
-                    textConfirm: "Confirm it Bitch",
-                    confirmTextColor: Colors.white,
-                    onCancel: () {},
-                    onConfirm: () {},
-                    buttonColor: Colors.pink,
-                    cancel: const Text(
-                      "Cancel Override",
-                      style: TextStyle(
+                    barrierColor: Colors.greenAccent.shade200,
+                    backgroundColor: Colors.purpleAccent,
+                    isDismissible: true,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
+                      side: const BorderSide(
                         color: Colors.white,
+                        style: BorderStyle.solid,
+                        width: 2.0,
                       ),
                     ),
-                    confirm: const Text(
-                      "Confirm Override",
-                      style: TextStyle(
-                        color: Colors.white,
-                      ),
-                    ),
-                    actions: [
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Action 1"),
-                      ),
-                      ElevatedButton(
-                        onPressed: () {},
-                        child: const Text("Action 2"),
-                      ),
-                    ],
-                    barrierDismissible: true,
+                    enableDrag: false,
                   );
                 },
               ),
