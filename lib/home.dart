@@ -21,7 +21,10 @@ class Home extends StatelessWidget {
               height: 8,
             ),
             ElevatedButton(
-              onPressed: () {},
+              onPressed: () {
+                // Get.toNamed("/nextScreen");
+                Get.offNamed("/nextScreen/1234");
+              },
               child: Text("Next Screen"),
             ),
             ElevatedButton(
@@ -31,6 +34,8 @@ class Home extends StatelessWidget {
               },
               child: Text("Back to Main"),
             ),
+            Text(
+                "Channel name is ${Get.parameters['channel']} and content is ${Get.parameters['content']}")
             // Text(
             //   "${Get.arguments}",
 

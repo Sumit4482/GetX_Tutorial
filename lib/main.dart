@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:getxtutorial/home.dart';
+import 'package:getxtutorial/nextScreen.dart';
+import 'package:getxtutorial/unknownPage.dart';
 
 void main() => runApp(MyApp());
 
@@ -11,6 +13,18 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return GetMaterialApp(
       title: "Navigation",
+      initialRoute: "/",
+      defaultTransition: Transition.zoom,
+      getPages: [
+        GetPage(name: '/', page: () => MyApp()),
+        GetPage(name: "/home", page: () => Home()),
+        GetPage(
+          name: "/nextScreen/:someValue",
+          page: () => NextScreen(),
+          transition: Transition.downToUp,
+        ),
+      ],
+      unknownRoute: GetPage(name: '/notfound', page: () => UnknownPage()),
       home: Scaffold(
         appBar: AppBar(
           title: Text("Navigation"),
@@ -21,23 +35,16 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
-                child: const Text("Go to Home"),
-                onPressed: () async {
-                  // Get.to(
-                  //   Home(),
-                  //   //this will open a new screen as a full screen dialog
-                  //   fullscreenDialog: true,
-                  //   transition: Transition.zoom,
-                  //   duration: Duration(milliseconds: 3000),
-                  //   curve: Curves.easeInBack,
-                  // );
-                  // Get.off(Home());
-                  // Get.offAll(Home());
-                  // Get.to(Home(), arguments: "Data from Main");
+                onPressed: () {
+                  // Get.toNamed("/home");
+                  // Get.offNamed("/home");
+                  // Get.offAllNamed("/home");
 
-                  var data = await Get.to(Home());
-                  print("The Recived data is $data");
+                  Get.toNamed(
+                    "/home?channel=Ripples Code&content=Flutter GetX",
+                  );
                 },
+                child: Text("Go to Home"),
               ),
             ],
           ),
