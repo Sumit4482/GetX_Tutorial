@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:getxtutorial/home.dart';
 
 void main() => runApp(MyApp());
 
@@ -9,10 +10,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Bottom Sheet",
+      title: "Navigation",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Bottom Sheet"),
+          title: Text("Navigation"),
         ),
         body: Center(
           child: Column(
@@ -20,42 +21,22 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               ElevatedButton(
-                child: const Text("Bottom Sheet"),
-                onPressed: () {
-                  Get.bottomSheet(
-                    Container(
-                      child: Wrap(
-                        children: [
-                          ListTile(
-                            title: Text("Light Theme"),
-                            leading: Icon(Icons.wb_sunny_outlined),
-                            onTap: () {
-                              Get.changeTheme(ThemeData.light());
-                            },
-                          ),
-                          ListTile(
-                            title: Text("Dark Theme"),
-                            leading: Icon(Icons.wb_sunny),
-                            onTap: () {
-                              Get.changeTheme(ThemeData.dark());
-                            },
-                          ),
-                        ],
-                      ),
-                    ),
-                    barrierColor: Colors.greenAccent.shade200,
-                    backgroundColor: Colors.purpleAccent,
-                    isDismissible: true,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(10),
-                      side: const BorderSide(
-                        color: Colors.white,
-                        style: BorderStyle.solid,
-                        width: 2.0,
-                      ),
-                    ),
-                    enableDrag: false,
-                  );
+                child: const Text("Go to Home"),
+                onPressed: () async {
+                  // Get.to(
+                  //   Home(),
+                  //   //this will open a new screen as a full screen dialog
+                  //   fullscreenDialog: true,
+                  //   transition: Transition.zoom,
+                  //   duration: Duration(milliseconds: 3000),
+                  //   curve: Curves.easeInBack,
+                  // );
+                  // Get.off(Home());
+                  // Get.offAll(Home());
+                  // Get.to(Home(), arguments: "Data from Main");
+
+                  var data = await Get.to(Home());
+                  print("The Recived data is $data");
                 },
               ),
             ],
