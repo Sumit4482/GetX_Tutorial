@@ -1,15 +1,13 @@
 import "package:flutter/material.dart";
 import 'package:get/get.dart';
+import 'package:getxtutorial/my_controller.dart';
 import 'student.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-//  var student = Student();
-
-// for making entire class observable
-  final student = Student(name: "Sumit ", age: 21).obs;
-
+  //Create the instance of Controller
+  MyController myController = Get.put(MyController());
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
@@ -24,7 +22,7 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Obx(() => Text(
-                    "Name is ${student.value.name}",
+                    "Name is ${myController.student.value.name}",
                     style: TextStyle(fontSize: 25),
                   )),
               SizedBox(
@@ -32,13 +30,8 @@ class MyApp extends StatelessWidget {
               ),
               ElevatedButton(
                 onPressed: () {
-                  student.update((val) {
-                    //Indvidual Reactive
-
-                    //Enitre Class is Reactive
-                    student.value.name =
-                        student.value.name.toString().toUpperCase();
-                  });
+                  //myController.convertToUpperCase();
+                  myController.convertUpperCase();
                 },
                 child: Text("Upper"),
               )
