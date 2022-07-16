@@ -1,7 +1,6 @@
 import "package:flutter/material.dart";
 import 'package:get/get.dart';
 import 'package:getxtutorial/my_controller.dart';
-import 'student.dart';
 
 void main() => runApp(MyApp());
 
@@ -12,10 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "State Management",
+      title: "Controller LifeCycle ",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("State Management"),
+          title: Text("Controller LifeCycle"),
         ),
         body: Center(
           child: Column(
@@ -23,7 +22,8 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GetBuilder<MyController>(
-                init: MyController(),
+                // initState: (data) => myController.increment(),
+                // dispose: (_) => myController.cleanUpTask(),
                 builder: (controller) {
                   return Text(
                     "The Value is ${controller.count}",
@@ -31,14 +31,6 @@ class MyApp extends StatelessWidget {
                   );
                 },
               ),
-              SizedBox(
-                height: 16,
-              ),
-              ElevatedButton(
-                  onPressed: () {
-                    Get.find<MyController>().increment();
-                  },
-                  child: Text("Increment"))
             ],
           ),
         ),
