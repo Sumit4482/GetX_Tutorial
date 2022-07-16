@@ -1,14 +1,14 @@
 import "package:flutter/material.dart";
 import 'package:get/get.dart';
+import 'student.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  var count = 0.obs;
+//  var student = Student();
 
-  void icrement() {
-    count++;
-  }
+// for making entire class observable
+  final student = Student(name: "Sumit ", age: 21).obs;
 
   @override
   Widget build(BuildContext context) {
@@ -23,15 +23,24 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Obx((() => Text("Count value is $count"))),
+              Obx(() => Text(
+                    "Name is ${student.value.name}",
+                    style: TextStyle(fontSize: 25),
+                  )),
               SizedBox(
                 height: 16,
               ),
               ElevatedButton(
                 onPressed: () {
-                  icrement();
+                  student.update((val) {
+                    //Indvidual Reactive
+
+                    //Enitre Class is Reactive
+                    student.value.name =
+                        student.value.name.toString().toUpperCase();
+                  });
                 },
-                child: Text("Increment"),
+                child: Text("Upper"),
               )
             ],
           ),
