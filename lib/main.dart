@@ -6,7 +6,8 @@ import 'student.dart';
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  //Create the instance of Controller
+  //If init property is not used in GetX<Type of Controller> then
+  //create the instance of controller as follows.
   MyController myController = Get.put(MyController());
   @override
   Widget build(BuildContext context) {
@@ -21,20 +22,24 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Obx(() => Text(
-                    "Name is ${myController.student.value.name}",
+              GetX<MyController>(
+                // init: MyController(),
+                builder: (controller) {
+                  return Text(
+                    "This value is ${myController.count}",
                     style: TextStyle(fontSize: 25),
-                  )),
+                  );
+                },
+              ),
               SizedBox(
                 height: 16,
               ),
               ElevatedButton(
-                onPressed: () {
-                  //myController.convertToUpperCase();
-                  myController.convertUpperCase();
-                },
-                child: Text("Upper"),
-              )
+                  onPressed: () {
+                    myController.increment();
+                    // Get.find<MyController>().increment();
+                  },
+                  child: Text("Increment"))
             ],
           ),
         ),
