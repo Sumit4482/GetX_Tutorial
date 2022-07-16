@@ -1,51 +1,38 @@
-import 'package:flutter/material.dart';
+import "package:flutter/material.dart";
 import 'package:get/get.dart';
-import 'package:getxtutorial/home.dart';
-import 'package:getxtutorial/nextScreen.dart';
-import 'package:getxtutorial/unknownPage.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+  var count = 0.obs;
+
+  void icrement() {
+    count++;
+  }
 
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Navigation",
-      initialRoute: "/",
-      defaultTransition: Transition.zoom,
-      getPages: [
-        GetPage(name: '/', page: () => MyApp()),
-        GetPage(name: "/home", page: () => Home()),
-        GetPage(
-          name: "/nextScreen/:someValue",
-          page: () => NextScreen(),
-          transition: Transition.downToUp,
-        ),
-      ],
-      unknownRoute: GetPage(name: '/notfound', page: () => UnknownPage()),
+      title: "State Management",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Navigation"),
+          title: Text("State Management"),
         ),
         body: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
+              Obx((() => Text("Count value is $count"))),
+              SizedBox(
+                height: 16,
+              ),
               ElevatedButton(
                 onPressed: () {
-                  // Get.toNamed("/home");
-                  // Get.offNamed("/home");
-                  // Get.offAllNamed("/home");
-
-                  Get.toNamed(
-                    "/home?channel=Ripples Code&content=Flutter GetX",
-                  );
+                  icrement();
                 },
-                child: Text("Go to Home"),
-              ),
+                child: Text("Increment"),
+              )
             ],
           ),
         ),
