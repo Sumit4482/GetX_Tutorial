@@ -22,12 +22,12 @@ class MyApp extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              GetX<MyController>(
-                // init: MyController(),
+              GetBuilder<MyController>(
+                init: MyController(),
                 builder: (controller) {
                   return Text(
-                    "This value is ${myController.count}",
-                    style: TextStyle(fontSize: 25),
+                    "The Value is ${controller.count}",
+                    style: TextStyle(fontSize: 26),
                   );
                 },
               ),
@@ -36,8 +36,7 @@ class MyApp extends StatelessWidget {
               ),
               ElevatedButton(
                   onPressed: () {
-                    myController.increment();
-                    // Get.find<MyController>().increment();
+                    Get.find<MyController>().increment();
                   },
                   child: Text("Increment"))
             ],
