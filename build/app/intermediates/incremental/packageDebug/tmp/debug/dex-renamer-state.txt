@@ -1,4 +1,4 @@
-#Sat Jul 16 23:10:21 IST 2022
+#Wed Jul 20 09:53:08 IST 2022
 base.0=C\:\\Development\\Flutter GetX\\getx_tutorial\\build\\app\\intermediates\\dex\\debug\\mergeDexDebug\\classes.dex
 renamed.0=classes.dex
 path.0=classes.dex

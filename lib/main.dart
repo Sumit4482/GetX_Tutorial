@@ -11,10 +11,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetMaterialApp(
-      title: "Controller LifeCycle ",
+      title: "Unique ID ",
       home: Scaffold(
         appBar: AppBar(
-          title: Text("Controller LifeCycle"),
+          title: Text("Unique ID"),
         ),
         body: Center(
           child: Column(
@@ -22,15 +22,31 @@ class MyApp extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               GetBuilder<MyController>(
-                // initState: (data) => myController.increment(),
-                // dispose: (_) => myController.cleanUpTask(),
+                id: 'txtCount',
                 builder: (controller) {
                   return Text(
-                    "The Value is ${controller.count}",
-                    style: TextStyle(fontSize: 26),
+                    "The value is ${controller.count}",
+                    style: TextStyle(fontSize: 25),
                   );
                 },
               ),
+              GetBuilder<MyController>(
+                builder: (controller) {
+                  return Text(
+                    "The value is ${controller.count}",
+                    style: TextStyle(
+                      fontSize: 25,
+                    ),
+                  );
+                },
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              ElevatedButton(
+                onPressed: () => myController.increment(),
+                child: Text("Increment"),
+              )
             ],
           ),
         ),
